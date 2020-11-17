@@ -1,0 +1,84 @@
+<%- include("partials/header") %>
+
+<div class="container">
+   <div class="row mt-4">
+	<div class="col-6 show-image-container">
+		<img src="<%= horrorComic.image_link %>">
+	</div>	
+	   <div class="col-6 show-details-container">
+		   <h1><%= horrorComic.title %></h1>
+		   <h2>Author</h2>
+		   <p><%= horrorComic.author %></p>
+		   <table class = "table">
+			   <tbody>
+				     <tr>
+				 <th scope ="row">Subgenre</th>
+				   <td><%= horrorComic.subgenre%></td>
+			   </tr>
+			   <tr>
+				 <th scope ="row">Series or One Shot</th>
+				   <td><%= horrorComic.series%></td>
+			   </tr>
+				   <tr>
+				 <th scope ="row">Issue Number</th>
+				   <td><%= horrorComic.issue%></td>
+			   </tr>
+				   <tr>
+				 <th scope ="row">Description</th>
+				   <td><%= horrorComic.description%></td>
+			   </tr>
+				   <tr>
+				 <th scope ="row">Maturity rating</th>
+				   <td><%= horrorComic.rated%></td>
+			   </tr>
+				   <tr>
+				 <th scope ="row"> Completion Status</th>
+				   <td><%= horrorComic.completionStatus%></td>
+			   </tr>
+				     <tr>
+				 <th scope ="row">Publisher</th>
+				   <td><%= horrorComic.publisher%></td>
+			   </tr>
+				 
+				     <tr>
+				 <th scope ="row">Illustrator</th>
+				   <td><%= horrorComic.illustrator%></td>
+			   </tr>
+				     <tr>
+				 <th scope ="row">Date</th>
+				   <td><%= horrorComic.date%></td>
+			   </tr>
+			   </tbody>
+		   </table>
+		   <a href ="/horrorComics/<%= horrorComic._id %>/edit">
+		   <button class= "btn btn-outline-info btn-lg btn-block mb-2">Edit Information</button>
+		   </a>
+		   <form action="/horrorComics/<%= horrorComic._id %>id?_method=DELETE"  method="POST">
+			   <button type="submit" class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+		   </form>
+	   </div>
+   </div>
+	<div class= "row show-comment-header mt-3">
+	</div>
+	<a href="/horrorComics/<%= horrorComic._id %>/comments/new">
+		<button class="btn btn-success btn-lg mt-2 my-4">Add Comment</button>
+	</a>
+	<% Comments.forEach((comment => { %>
+	<div class="row show-comment-container py-2 border">
+		<div class="col-2d my-auto" id="userComment">
+			<%= comment.user %>
+		</div>
+		<div class="col-2 border-right my-auto d-flex flex-wrap justify-content-center" id="successbtn" >
+			<a class="btn btn-sm btn-success w-75 p-0 my-1 my-auto" href="/horrorComics/<%= horrorComic._id %>/comments/<%= comment._id %>/edit">Edit</a>
+			<form class="w-75 my-1" action="/horrorComics/<%=horrorComic._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+				<button class="btn btn-sm btn-danger w-100 p-0">Delete</button>
+			</form>
+		</div>
+		<div class="col-8">
+			<%= comment.commentText %>
+		</div>
+	</div>
+	<% })) %>
+</div>
+
+<%- include("partials/footer") %>

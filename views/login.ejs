@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<div class=container id="signUpHeaderContainer">
+<h1 id="loginHeader">Login</h1>
+	</div>
+<div class=container id="loginContainer">
+	<div class=container>
+		<div class=row>
+<form action ="/login" method="POST">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+  </div>
+	<div class="form-group col-md-6">
+		<label for="username">Username</label>
+		<input type ="text" class="form-control" name="username" placeholder="Username">
+		</div>
+  <div class="form-row">
+	<button type= "submit" id="loginButton">
+		Login
+	</button>
+		</div>
+</form>
+</div>
+
+
+<%- include('partials/footer') %>

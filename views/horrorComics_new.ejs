@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+<div class="container">
+<h1 id="newHorrorComicsHeader">New Comic Information</h1>
+
+<form action="/horrorComics" method="POST">
+  <div class="form-group">
+    <label for="title" id="titleNewComicFormLabel" class="formLabel">Title</label>
+    <input type="text" class="form-control" name="title" placeholder="The Story" autofocus>
+  </div>
+  <div class="form-group">
+    <label for="description" id="descriptionNewComicFormLabel" class="formLabel">Summary</label>
+    <input type="text" class="form-control" name="description" placeholder ="The story follows a mad man who...">
+  </div>
+	 <div class="form-group">
+    <label for="date" id="dateLabel" class="formLabel">Date</label>
+    <input type="date" class="form-control" name="date" placeholder ="4/44/1999">
+  </div>
+	<div class="form-group">
+    <label for="series" id="seriesLabel" class="formLabel">(If part of Series) Series Name</label>
+    <input type="text" class="form-control" name="series" placeholder="A Series of Unfortunate Events">
+  </div>
+	<div class="form-group">
+    <label for="issue" id="issueLabel" class="formLabel">(If part of Series) issue number</label>
+    <input type="number" class="form-control" name="issue" placeholder ="000">
+  </div>
+	<div class="form-group">
+    <label for="author" id="authorLabel" class="formLabel"> Author's name or pen name</label>
+    <input type="text" class="form-control" name="author" placeholder ="Edgar Allen Poe">
+  </div>
+	<div class="form-group">
+    <label for="illustrator" id="illustratorLabel" class="formLabel">Name of Comic illustrator/artist</label>
+    <input type="text" class="form-control" name="illustrator" illustrator="artist">
+  </div>
+	<div class="form-group">
+    <label for="publisher" id="publisherLabel" class="formLabel">Publisher</label>
+    <input type="text" class="form-control" name="publisher" placeholder ="Dark Horse Comics">
+  </div>
+	<div class="form-group">
+    <label for="subgenre" id="subgenreLabel" class="formLabel">Subgenre</label>
+    <select class ="form-control" id="subgenre" name="subgenre">
+		<option disabled selected> ---Choose Below---</option>
+		<option>Horror Comedy</option>
+		<option> Horror Manga</option>
+          <option>Psycological horror</option>
+          <option>Lovecraftian horror</option>
+		  <option>Ghost story</option>
+          <option>Southern Gothic</option>
+          <option>Body horror</option>
+		  <option>Cthulhu Mythos</option>
+          <option>Fantasy Horror</option>
+          <option>Japanese Horror</option>
+		  <option>Urban Gothic</option> 
+          <option>Wierd fiction</option>
+          <option>Survival Horror</option>
+          <option>Occult Detective Fiction</option>
+		  <option>Sci-fi Horror</option>
+		  <option>Horror Web Comics</option>
+	</select>
+  </div>
+	
+	<div class="form-group">
+    <label for="rating" id="ratingLabel" class="formLabel">Maturity Rating</label>
+    <select class ="form-control" id="rating" name="rating">
+		<option disabled selected> ---Choose Below---</option>
+		<option> E - everyone, cartoon violence comic mischeif </option>
+		<option> T - teen, ages 12+, mild violence, language, and/or suggestive themes </option>
+		<option> T+ - teen plus, ages 15+, moderate violence, suggestive themes, suggestive images, and/or mild profanity </option>
+		<option> M - mature, ages 17+, intense violence, extensive profanity, nudity, sexual themes, etc, only suitable for older readers </option>
+		</select>
+  </div>
+  <div class="form-group">
+	<label for="image" id="imageNewComicFormLabel" class="formLabel">Link to Image Related to Comic</label>
+    <input type="text" class="form-control" name="image_link" placeholder ="example.img ">
+	</div>
+	<div class="form-group">
+    <label for="completionStatus" id="completionStatusLabel" class="formLabel">Completion Status</label>
+     <select class ="form-control" id="completionStatus" name="completionStatus">
+		<option disabled selected> ---Choose Below---</option>
+		<option> One Shot </option>
+		<option> On going Series</option>
+		<option> Discontinued Series </option>
+		<option> Paused </option>
+		</select>
+  </div>
+  <button type="submit" class="btn btn-primary" id="newComicBtn">Submit</button>
+</form>
+</div>
+<%- include('partials/footer') %>

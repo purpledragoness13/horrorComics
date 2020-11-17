@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+<div class="container">
+<h1>Update and Edit comic information</h1>
+<form action="/horrorComics/<%= horrorComic._id %>?_method=PUT " method="POST">
+  <div class="form-group">
+    <label for="title" id="titleNewComicFormLabel">Title</label>
+    <input type="text" class="form-control" name="title" value= "<%= horrorComic.title %>" autofocus>
+  </div>
+  <div class="form-group">
+    <label for="description" id="descriptionNewComicFormLabel">Summary</label>
+    <input type="text" class="form-control" name="description" value ="<%=horrorComic.description %>">
+  </div>
+	 <div class="form-group">
+    <label for="date" id="dateLabel">Date</label>
+    <input type="date" class="form-control" name="date" value ="<%=horrorComic.date.toISOSString().split('T')[0] %>">
+  </div>
+	<div class="form-group">
+    <label for="series" id="seriesLabel">(If part of Series) Series Name</label>
+    <input type="text" class="form-control" name="series" value ="<%= horrorComic.series %>">
+  </div>
+	<div class="form-group">
+    <label for="issue" id="issueLabel">(If part of Series) issue number</label>
+    <input type="number" class="form-control" name="issue" value ="<%= horrorComic.issue %>">
+  </div>
+	<div class="form-group">
+    <label for="author" id="authorLabel"> Author's name or pen name</label>
+    <input type="text" class="form-control" name="author" value ="<%= horrorComic.author %>">
+  </div>
+	<div class="form-group">
+    <label for="illustrator" id="illustratorLabel">Name of Comic illustrator/artist</label>
+    <input type="text" class="form-control" name="illustrator" 
+		   value="<%=horrorComic.illustrator%>">
+  </div>
+	<div class="form-group">
+    <label for="publisher" id="publisherLabel">Publisher</label>
+    <input type="text" class="form-control" name="publisher" value="<%=horrorComic.publisher%>">
+  </div>
+	<div class="form-group">
+    <label for="subgenre" id="subgenreLabel">Subgenre</label>
+    <select class ="form-control" id="subgenre" name="subgenre" value="<%=horrorComic.subgenre%>">
+		<option disabled > ---Choose Below---</option>
+		<option <%= horrorComic.subgenre === 'horror comedy' ? 'selected' : ''%>>Horror Comedy</option>
+		<option <%= horrorComic.subgenre === 'horror manga' ? 'selected' : ''%>> Horror Manga</option>
+          <option <%= horrorComic.subgenre === 'psycological horror' ? 'selected' : ''%>>Psycological horror</option>
+          <option <%= horrorComic.subgenre === 'lovecraftian horror' ? 'selected' : ''%>>Lovecraftian horror</option>
+		  <option <%= horrorComic.subgenre === 'ghost story' ? 'selected' : ''%>>Ghost story</option>
+          <option <%= horrorComic.subgenre === 'southern gothic' ? 'selected' : ''%>>Southern Gothic</option>
+          <option<%= horrorComic.subgenre === 'body horror' ? 'selected' : ''%>>Body horror</option>
+		  <option<%= horrorComic.subgenre === 'cthulhu mythos' ? 'selected' : ''%>>Cthulhu Mythos</option>
+          <option<%= horrorComic.subgenre === 'fantasy horror' ? 'selected' : ''%>>Fantasy Horror</option>
+          <option<%= horrorComic.subgenre === 'japanese horror' ? 'selected' : ''%>>Japanese Horror</option>
+		  <option<%= horrorComic.subgenre === 'urban gothic' ? 'selected' : ''%>>Urban Gothic</option> 
+          <option<%= horrorComic.subgenre === 'weird fiction' ? 'selected' : ''%>>Wierd fiction</option>
+          <option<%= horrorComic.subgenre === 'survivial horror' ? 'selected' : ''%>>Survival Horror</option>
+          <option <%= horrorComic.subgenre === 'occult detective fiction' ? 'selected' : ''%>>Occult Detective Fiction</option>
+		  <option<%= horrorComic.subgenre === 'sci-fi horror' ? 'selected' : ''%>>Sci-fi Horror</option>
+		  <option<%= horrorComic.subgenre === 'horror web comics' ? 'selected' : ''%>>Horror Web Comics</option>
+	</select>
+  </div>
+	<div class="form-group">
+    <label for="starating" id="staratingLabel">Star Rating</label>
+   <select class ="form-control" id="starating" name="starating">
+	   <option disabled> ---Choose Below---</option>
+	   <option<%= horrorComic.starating === '*' ? 'selected' : ''%>>*</option>
+	   <option<%= horrorComic.starating === '**' ? 'selected' : ''%>>**</option>
+	   <option<%= horrorComic.starating === '***' ? 'selected' : ''%>>***</option>
+	   <option<%= horrorComic.starating === '****' ? 'selected' : ''%>>****</option>
+	   <option<%= horrorComic.starating === '*****' ? 'selected' : ''%>>*****</option>
+		</select>
+  </div>
+	<div class="form-group">
+    <label for="rating" id="ratingLabel">Maturity Rating</label>
+    <select class ="form-control" id="rating" name="rating" value="<%=horrorComic.rating%>">
+		<option disabled > ---Choose Below---</option>
+		<option<%= horrorComic.rating === 'E - everyone, cartoon violence comic mischeif' ? 'selected' : ''%>> E - everyone, cartoon violence comic mischeif </option>
+		<option<%= horrorComic.rating === 'T - teen, ages 12+, mild violence, language, and/or suggestive themes' ? 'selected' : ''%>> T - teen, ages 12+, mild violence, language, and/or suggestive themes </option>
+		<option<%= horrorComic.rating === 'T+ - teen plus, ages 15+, moderate violence, suggestive themes, suggestive images, and/or mild profanity ' ? 'selected' : ''%>> T+ - teen plus, ages 15+, moderate violence, suggestive themes, suggestive images, and/or mild profanity </option>
+		<option<%= horrorComic.rating === 'M - mature, ages 17+, intense violence, extensive profanity, nudity, sexual themes, etc, only suitable for older readers ' ? 'selected' : ''%>> M - mature, ages 17+, intense violence, extensive profanity, nudity, sexual themes, etc, only suitable for older readers </option>
+		</select>
+  </div>
+  <div class="form-group">
+	<label for="image" id="imageNewComicFormLabel">Link to Image Related to Comic</label>
+    <input type="text" class="form-control" name="image_link" value ="<%= horrorComic.image_link %>">
+	</div>
+	<div class="form-group">
+    <label for="completionStatus" id="completionStatusLabel">Completion Status</label>
+     <select class ="form-control" id="completionStatus" name="completionStatus" 
+			 value="<%= horrorComic.completionStatus%>">
+		<option disabled> ---Choose Below---</option>
+		<option<%= horrorComic.completionStatus === 'one shot' ? 'selected' : ''%>> One Shot </option>
+		<option<%= horrorComic.completionStatus === 'on going series' ? 'selected' : ''%>> On going Series</option>
+		<option <%= horrorComic.completionStatus === 'discontinued series' ? 'selected' : ''%>> Discontinued Series </option>
+		<option <%= horrorComic.completionStatus === 'paused' ? 'selected' : ''%>> Paused </option>
+		</select>
+  </div>
+  <button type="submit" class="btn btn-primary" id="newComicBtn">Submit</button>
+</form>
+</div>
+<%- include('partials/footer') %>

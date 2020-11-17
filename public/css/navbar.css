@@ -1,0 +1,17 @@
+
+
+navbar{
+	color: rgb(255,255,255);
+}
+
+.dropdown-item{
+	border: solid;
+	border-color:rgb(255,255,255);
+	color: rgb(153,0,0);
+}
+
+.nav-item{
+	border: solid;
+	border-color:rgb(153,0,0);
+	margin: 10px;
+}

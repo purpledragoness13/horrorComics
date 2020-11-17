@@ -1,0 +1,17 @@
+<%- include("partials/header.ejs")%>
+
+<div class = container>
+	<h1>New Comment </h1>
+	<form action="/horrorComics/<%= horrorComicId %>/comments" method ="POST">
+		<div class ="form-group">
+		<label for="commentText" class="commentText"> Comment Text</label>
+		<textArea class="form-control" name="commentText" id="commentText" rows = "8" cols="80" placeholder="Type comment here..." required></textArea>
+		</div>
+		<input type="hidden" name="horrorComicId" value="<%= horrorComicId %>">
+		<button type="submit" class ="btn btn-primary">
+		Post Comment	
+		</button>
+	</form>
+</div>
+
+<%- include("partials/footer.ejs")%>

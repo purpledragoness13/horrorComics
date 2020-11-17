@@ -1,0 +1,61 @@
+<link href ="/css/navbar.css" rel ="stylesheet">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/horrorComics">
+	<img src="/img/carved-pumpkins-1.svg" alt="Brand image" height="40" width="50"  >
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/horrorComics">Comics</a>
+     </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Subgenres
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Horror Comedy</a>
+          <a class="dropdown-item" href="#">Psycological horror</a>
+          <a class="dropdown-item" href="#">Lovecraftian horror</a>
+		  <a class="dropdown-item" href="#">Ghost story</a>
+          <a class="dropdown-item" href="#">Southern Gothic</a>
+          <a class="dropdown-item" href="#">Body horror</a>
+		  <a class="dropdown-item" href="#">Cthulhu Mythos</a>
+          <a class="dropdown-item" href="#">Fantasy Horror</a>
+          <a class="dropdown-item" href="#">Japanese Horror</a>
+		  <a class="dropdown-item" href="#">Urban Gothic</a>
+          <a class="dropdown-item" href="#">Wierd fiction</a>
+          <a class="dropdown-item" href="#">Survival Horror</a>
+          <a class="dropdown-item" href="#">Occult Detective Fiction</a>
+		  <a class="dropdown-item" href="#">Sci-fi Horror</a>
+		  <a class="dropdown-item" href="#">Horror Web Comics</a>
+		<a class="dropdown-item" href='#'> Horror Manga</a>
+		 </div>
+      </li> 
+		<li class="nav-item">
+        <a class="nav-link" href="/horrorComics/new">Add Comic to Library</a>
+     </li>
+		
+		<% if(user) { %>
+		<li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>	
+		<% } else{ %>
+      <li class="nav-item ">
+        <a class="nav-link" href ="/login">Login</a>
+      </li>	
+		 <li class="nav-item">
+        <a class="nav-link" href="/signup">Sign up</a>
+      </li>	
+		<% } %>
+		
+    </ul>
+   <form class="form-inline my-2 my-lg-0" name="" action="/horrorComics/search" method="GET">
+	   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	  </form>
+  </div>
+</nav>
