@@ -35,9 +35,11 @@
 		<a class="dropdown-item" href='#'> Horror Manga</a>
 		 </div>
       </li> 
+		<% if (user) { %>
 		<li class="nav-item">
         <a class="nav-link" href="/horrorComics/new">Add Comic to Library</a>
      </li>
+		<% } %>
 		
 		<% if(user) { %>
 		<li class="nav-item">
