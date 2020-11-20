@@ -14,7 +14,13 @@ const passportLocal = require('passport-local');
 const LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
 // Config Imports
-const config = require('./config.js');
+
+try{
+var config = require('./config.js');
+} catch (e){
+	console.log("Unable to import config. Most likely not working locally.");
+	console.log(e);
+}
 // Route Imports
 const horrorComicRoutes = require('./routes/horrorComics.js');
 const commentRoutes = require('./routes/comments.js');
@@ -39,7 +45,12 @@ app.use(morgan('tiny'))
 //Config
 //=================================================================
 //mongoose config
+try{
 mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+} catch (e){
+	console.log("Unable to import config. Most likely not working locally.");
+	mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+}
 mongoose.Promise = global.Promise;
 // Express Config
 app.set("view engine", "ejs");
@@ -49,7 +60,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Express session config
 app.use(expressSession({
-	secret: "words",
+	secret: process.env.ES_SECRET || config.expressSession.secret,
 	resave:false,
 	saveUninitialized:false
 }));
@@ -83,6 +94,6 @@ app.use("/horrorComics/:id/comments",commentRoutes);
 //Listen
 //=================================================================
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log("yelp clone is running...");
 });
