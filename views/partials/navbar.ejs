@@ -17,22 +17,22 @@
           Subgenres
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Horror Comedy</a>
-          <a class="dropdown-item" href="#">Psycological horror</a>
-          <a class="dropdown-item" href="#">Lovecraftian horror</a>
-		  <a class="dropdown-item" href="#">Ghost story</a>
-          <a class="dropdown-item" href="#">Southern Gothic</a>
-          <a class="dropdown-item" href="#">Body horror</a>
-		  <a class="dropdown-item" href="#">Cthulhu Mythos</a>
-          <a class="dropdown-item" href="#">Fantasy Horror</a>
-          <a class="dropdown-item" href="#">Japanese Horror</a>
-		  <a class="dropdown-item" href="#">Urban Gothic</a>
-          <a class="dropdown-item" href="#">Wierd fiction</a>
-          <a class="dropdown-item" href="#">Survival Horror</a>
-          <a class="dropdown-item" href="#">Occult Detective Fiction</a>
-		  <a class="dropdown-item" href="#">Sci-fi Horror</a>
-		  <a class="dropdown-item" href="#">Horror Web Comics</a>
-		<a class="dropdown-item" href='#'> Horror Manga</a>
+          <a class="dropdown-item" href="/horrorComics/genre/horrorcomedy">Horror Comedy</a>
+          <a class="dropdown-item" href="/horrorComics/genre/psycologicalhorror">Psycological horror</a>
+          <a class="dropdown-item" href="/horrorComics/genre/lovecraftianhorror">Lovecraftian horror</a>
+		  <a class="dropdown-item" href="/horrorComics/genre/ghoststory">Ghost story</a>
+          <a class="dropdown-item" href="/horrorComics/genre/southerngothic">Southern Gothic</a>
+          <a class="dropdown-item" href="/horrorComics/genre/bodyhorror">Body horror</a>
+		  <a class="dropdown-item" href="/horrorComics/genre/cthulhumythos">Cthulhu Mythos</a>
+          <a class="dropdown-item" href="/horrorComics/genre/fantasyhorror">Fantasy Horror</a>
+          <a class="dropdown-item" href="/horrorComics/genre/japanesehorror">Japanese Horror</a>
+		  <a class="dropdown-item" href="/horrorComics/genre/urbangothic">Urban Gothic</a>
+          <a class="dropdown-item" href="/horrorComics/genre/wierdfiction">Wierd fiction</a>
+          <a class="dropdown-item" href="/horrorComics/genre/survivalhorror">Survival Horror</a>
+          <a class="dropdown-item" href="/horrorComics/genre/occultdetectivefiction">Occult Detective Fiction</a>
+		  <a class="dropdown-item" href="/horrorComics/genre/sci-fi-horror">Sci-fi Horror</a>
+		  <a class="dropdown-item" href="/horrorComics/genre/horrorwebcomics">Horror Web Comics</a>
+		<a class="dropdown-item" href="/horrorComics/genre/horrormanga"> Horror Manga</a>
 		 </div>
       </li> 
 		<% if (user) { %>
@@ -61,3 +61,21 @@
 	  </form>
   </div>
 </nav>
+<div class="container mt-2">
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success fade show" role="alert">
+<%= successMessage %>
+	<button type ="button" class ="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"> &times;</span>
+	</button>
+</div>
+<% } %>
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-warning fade show" role="alert">
+<%= errorMessage %>
+	<button type ="button" class ="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"> &times;</span>
+	</button>
+</div>
+<% } %>
+</div>
