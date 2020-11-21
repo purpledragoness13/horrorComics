@@ -6,6 +6,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
@@ -81,7 +82,8 @@ app.use((req, res, next) =>{
 // Method override config
 app.use(methodOverride('_method'));
 
-
+// connect flash
+app.use(flash());
 
 // Route config
 app.use("/", mainRoutes);
