@@ -22,11 +22,11 @@ router.post("/", isLoggedIn, async (req, res) => {
 		commentText: req.body.commentText,
 		horrorComicId: req.body.horrorComicId
 			});
-		console.log(comment);
+		res.flash("success","Comment Posted")
 		res.redirect(`/horrorComics/${req.body.horrorComicId}`);	
 	}catch(err){
-		console.log(err);
-		res.send("Error at comments.js/create comment and update database");
+		res.flash("error", "Comment Not Posted")
+		res.redirect("/horrorComics");
 	}
 });
 
@@ -35,12 +35,11 @@ router.get("/:commentId/edit", checkCommentOwner, async (req, res) => {
 	try{
 		const horrorComic = await HorrorComic.findById(req.params.id).exec();
 		const comment = await Comment.findById(req.params.commmentId).exec();
-		console.log("horrorComic", horrorComic);
-		console.log("comment", comment);
+		res.flash("success","Successfully Updated")
 		res.render("comments_edit", {horrorComic, comment});
 	}catch(err){
-		console.log(err);
-		res.send("Error at comments.js/show comment edit")
+		res.flash("error", "Unable to Update Comic")
+		res.redirect("/horrorComics");
 	}
 });
 		 
@@ -49,11 +48,11 @@ router.get("/:commentId/edit", checkCommentOwner, async (req, res) => {
 router.put("/:commentId", checkCommentOwner, async (req, res) =>{
 	try{
 		const comment = await Comment.findByIdAndUpdate(req.params.commentId, {commentText:req.body.commentText}, {new: true});
-		console.log(comment);
+		res.flash("success","Edited")
 		res.redirect(`/horrorComics/${req.params.id}`);
 	}catch(err){
-		console.log(err);
-		res.send("Error at comments.js update edit form")
+		res.flash("error", "Unable to Edit Horror Comic")
+		res.redirect("/horrorComics");
 	}
 })
 
@@ -61,11 +60,11 @@ router.put("/:commentId", checkCommentOwner, async (req, res) =>{
 router.delete("/:commentId", checkCommentOwner, async (req, res) => {
 	try{
 		const comment = await Comment.findByIdAndDelete(req.params.commentId);
-		console.log(comment);
+		res.flash("success","It is Done")
 		res.redirect(`/horrorComics/${req.params.id}`);
 	}catch(err){
-		console.log(err);
-		res.send("Error in comment.js delete comment")
+		res.flash("error", "Comment not Deleted")
+		res.redirect("/horrorComics");
 	}
 })
 

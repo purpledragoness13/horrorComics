@@ -8,9 +8,11 @@ const checkHorrorComicOwner = async (req,res, next) => {
 			//if owner than render the form to edit
 			next();
 		}else{
+			req.flash("error","This is not yours")
 			res.redirect("back")
 		}
-	}else{ //if not logged in, redirect to /login 
+	}else{ //if not logged in, redirect to /login
+		req.flash("error","Please log in to your account")
 		res.redirect("/login");
 	}
 }
