@@ -14,7 +14,7 @@ router.post('/signup', async (req, res)=>{
 		const newUser = await User.register(new User({
 			username: req.body.username,
 			email: req.body.email,
-		    password: res.body.password})
+		    password: req.body.password})
 		)
 			res.flash("success", `Welcome ${newUser.username}, may you never leave.`);
 		passport.authenticate('local')(req, res, ()=> {

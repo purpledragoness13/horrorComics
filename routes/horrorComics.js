@@ -72,7 +72,7 @@ router.get("/search", async (req, res) => {
 //Genre
 router.get("/genre/:genreName", async (req, res) =>{
 	//check if the given genre is valid
-	const validGenres = ["Horror Comedy","Psycological horror","Lovecraftian horror","Ghost story","Southern Gothic","Body horror","Cthulhu Mythos","Fantasy Horror","Japanese Horror","Urban Gothic","Wierd fiction","Survival Horror","Occult Detective Fiction","Sci-fi Horror","Horror Web Comics","Horror Manga"];
+	const validGenres = ["horrorcomedy","psycologicalhorror","lovecraftianhorror","ghoststory","southerngothic","bodyhorror","cthulhumythos","fantasyhorror","japanesehorror","urbangothic","wierdfiction","survivalhorror","occultdetectivefiction","sci-fi-horror","horrorwebcomics","horrormanga"];
 	if(validGenres.includes(req.params.genre.toLowerCase())) {
 		const horrorComics = await HorrorComic.find({genre:req.params.genre}).exec();
 		res.render("horrorComics",{horrorComics});

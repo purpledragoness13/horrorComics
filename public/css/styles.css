@@ -146,6 +146,42 @@ body {
 	border-bottom-color: rgb(153,0,0);
 	border-top-color: rgb(153,0,0);
 }
-/* comments custumization */
 
+#landingBox{
+	border-width: 20px;
+	border-radius: 1rem;
+	border-style: groove;
+	background-color:rgb(249,248,231);
+	border-color:rgb(153,0,0);
+	 width: 3000px;
+    height: 500px;
+	margin-top: 50px;
+	
+}
+
+#landingImageContainer{
+	align-self:center;
+	border-width: 5px;
+	border-style: groove;
+	border-color:rgb(153,0,0);
+	height:300px;
+	width:300px;
+	margin-top: 15px;
+	margin-left:400px;
+	display:flex;
+	flex: 1 1 auto;
+}
+
+#landingTextBox{
+	align-content:center;
+	margin-left:300px;
+}
+
+#landingText{
+	text-align: center;
+	margin: 0.5rem;
+	font-family: 'Playfair Display', serif;
+	font-weight: 400;
+	font-size: 1.8rem;
+}
 

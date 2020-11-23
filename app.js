@@ -73,6 +73,9 @@ passport.serializeUser(User.serializeUser()); // what data should be stored in t
 passport.deserializeUser(User.deserializeUser()); // get user data from the stored session
 passport.use(new LocalStrategy(User.authenticate())); //use the local strategy
 
+// connect flash
+app.use(flash());
+
 //State config
 app.use((req, res, next) =>{
 	res.locals.user = req.user;
@@ -84,8 +87,6 @@ app.use((req, res, next) =>{
 // Method override config
 app.use(methodOverride('_method'));
 
-// connect flash
-app.use(flash());
 
 // Route config
 app.use("/", mainRoutes);
