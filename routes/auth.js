@@ -19,7 +19,8 @@ router.post('/signup', async (req, res)=>{
 			res.flash("success", `Welcome ${newUser.username}, may you never leave.`);
 		passport.authenticate('local')(req, res, ()=> {
 			res.redirect('/horrorComics');
-		})
+		}),
+			req.body.password;
 	} catch (err) {
 		console.log(err);
 		res.send("error in auth.js")
