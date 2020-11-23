@@ -13,9 +13,9 @@ router.post('/signup', async (req, res)=>{
 	try{
 		const newUser = await User.register(new User({
 			username: req.body.username,
-			email: req.body.email,
-		    password: req.body.password})
-		)
+			email: req.body.email}), req.body.password )	
+		
+		
 			res.flash("success", `Welcome ${newUser.username}, may you never leave.`);
 		passport.authenticate('local')(req, res, ()=> {
 			res.redirect('/horrorComics');
