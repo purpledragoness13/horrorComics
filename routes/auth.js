@@ -34,7 +34,7 @@ router.get("/login",(req, res)=>{
 
 //Login
 router.post("/login", passport.authenticate('local', {
-	successRedirect: '/comics',
+	successRedirect: '/horrorComics',
 	failureRedirect: '/login',
 	failureFlash:true,
 	successFlash: "We have been expecting you"

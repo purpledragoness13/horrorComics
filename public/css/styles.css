@@ -39,24 +39,33 @@ body {
 }
 
 #newHorrorComicsHeader{
-	color: rgb(247, 229, 228);
-	font-family: 'Playfair Display', serif;
-	text-align: center;
+		display: flex;
+	max-width: 960px;
+	margin: 0 auto;
+	color: rgb(153,0,0);
+	font-family: 'Source Serif Pro', serif;
+	margin: 10%;
+	text-align:center;
+	border-top: double;
+	border-bottom: double;
+	border-bottom-color: rgb(255,255,255);
+	border-top-color: rgb(255,255,255);
 }
 
 .form-group{
 	display:block;
 	width:100%;
+	
 }
 
 .formLabel {
 	display:inline-block;
 	vertical-align:middle;
-    float: left;
+    float: center;
     min-width: 17px;
     font-size: 11px;
     text-transform: uppercase;
-    color: #62696d;
+    color: rgb(255,255,255);
     margin-right: 15px;
 }
 

@@ -37,7 +37,9 @@ router.post("/", isLoggedIn, async (req, res) => {
 		owner: {
 			id: req.user.id,
 			username: req.user.username
-		}
+		},
+		upvotes: [req.user.username],
+		downvotes:[]
 	}
 	try{
 		const horrorComic = await HorrorComic.create(newHorrorComic);
