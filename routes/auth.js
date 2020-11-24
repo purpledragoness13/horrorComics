@@ -16,14 +16,14 @@ router.post('/signup', async (req, res)=>{
 			email: req.body.email}), req.body.password )	
 		
 		
-			res.flash("success", `Welcome ${newUser.username}, may you never leave.`);
+			req.flash("success", `Welcome ${newUser.username}, may you never leave.`);
 		passport.authenticate('local')(req, res, ()=> {
 			res.redirect('/horrorComics');
-		}),
-			req.body.password;
+		})
+		
 	} catch (err) {
-		console.log(err);
-		res.send("error in auth.js")
+		req.flash("error", "Unable to signup");
+		res.redirect('/horrorComics');
 	}
 });
 
@@ -43,7 +43,7 @@ router.post("/login", passport.authenticate('local', {
 //logout
 router.get("/logout",(req,res)=>{
 	req.logout();
-	res.flash("success","Farewell");
+	req.flash("success","Farewell");
 	res.redirect('/horrorComics');
 })
 

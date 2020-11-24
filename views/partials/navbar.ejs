@@ -64,15 +64,16 @@
 <div class="container mt-2">
 <% if (successMessage && successMessage.length > 0) { %>
 <div class="alert alert-success fade show" role="alert">
-<%= successMessage %>
+        <%= successMessage %>
 	<button type ="button" class ="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true"> &times;</span>
 	</button>
 </div>
 <% } %>
+	
 <% if (errorMessage && errorMessage.length > 0) { %>
 <div class="alert alert-warning fade show" role="alert">
-<%= errorMessage %>
+        <%= errorMessage %>
 	<button type ="button" class ="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true"> &times;</span>
 	</button>

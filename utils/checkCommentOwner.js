@@ -8,11 +8,11 @@ const checkCommentOwner = async (req,res, next) => {
 			//if owner than render the form to edit
 			next();
 		}else{
-			res.flash("error","This is not yours")
+			req.flash("error","This is not yours")
 			res.redirect("back")
 		}
 	}else{ //if not logged in, redirect to /login 
-		res.flash("error","Please Login")
+		req.flash("error","Please Login")
 		res.redirect("/login");
 	}
 }

@@ -22,11 +22,13 @@ var config = require('./config.js');
 	console.log("Unable to import config. Most likely not working locally.");
 	console.log(e);
 }
+
 // Route Imports
 const horrorComicRoutes = require('./routes/horrorComics.js');
 const commentRoutes = require('./routes/comments.js');
 const mainRoutes= require('./routes/main.js');
-const authRoutes= require('./routes/auth.js')
+const authRoutes= require('./routes/auth.js');
+
 // Model Imports
 const HorrorComic = require('./models/HorrorComic');
 const Comment = require('./models/Comment.js');
@@ -45,6 +47,9 @@ app.use(morgan('tiny'))
 //=================================================================
 //Config
 //=================================================================
+// body Parser config
+app.use(bodyParser.urlencoded({extended: true}));
+
 //mongoose config
 try{
 mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
@@ -52,12 +57,12 @@ mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopolog
 	console.log("Unable to import config. Most likely not working locally.");
 	mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 }
+
 mongoose.Promise = global.Promise;
+
 // Express Config
 app.set("view engine", "ejs");
 app.use(express.static('public'));
-// body Parser config
-app.use(bodyParser.urlencoded({extended: true}));
 
 //Express session config
 app.use(expressSession({
@@ -66,15 +71,18 @@ app.use(expressSession({
 	saveUninitialized:false
 }));
 
+// Method override config
+app.use(methodOverride('_method'));
+
+// connect flash
+app.use(flash());
+
 //passport config
 app.use(passport.initialize());
 app.use(passport.session()); // allows persistent sessions
 passport.serializeUser(User.serializeUser()); // what data should be stored in the session
 passport.deserializeUser(User.deserializeUser()); // get user data from the stored session
 passport.use(new LocalStrategy(User.authenticate())); //use the local strategy
-
-// connect flash
-app.use(flash());
 
 //State config
 app.use((req, res, next) =>{

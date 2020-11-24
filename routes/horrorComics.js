@@ -9,10 +9,11 @@ router.get("/", async (req, res) => {
 	console.log(req.user);
 	try{
 	const horrorComics = await HorrorComic.find().exec();
+	req.flash("success", "Your horror comic has been created");
 	res.render("horrorComics", {horrorComics});
 	}catch(err) {
-		console.log(err);
-		res.send("problem in index");
+		req.flash("error","There was a problem creating your comic")
+		res.redirect("/horrorComics");
 	}
 })
 
@@ -43,7 +44,7 @@ router.post("/", isLoggedIn, async (req, res) => {
 		req.flash("success", "Horror Comic added to library.")
 	res.redirect("/horrorComics/" + horrorComic._id);
 	}catch (err){
-	res.flash("error","Horror Comic not added to library, try agian.")
+	req.flash("error","Horror Comic not added to library, try agian.")
 		res.redirect("/horrorComics");
 	}
 });
@@ -64,7 +65,7 @@ router.get("/search", async (req, res) => {
 		});
 		res.render("horrorComics", {horrorComics});
 	}catch (err){
-		res.flash("error","No such Tome")
+		req.flash("error","No such Tome")
 		res.redirect("/horrorComics");
 	}
 })
@@ -128,10 +129,10 @@ router.put("/:id", checkHorrorComicOwner, async (req, res) => {
 	
 	try{
 		const updatedHorrorComic = await HorrorComic.findByIdAndUpdate(req.params.id, horrorComic, {new: true}).exec();
-		res.flash("success","Horror Comic Updated")
-	res.redirect(`/horrorComics/${req.params.id}`);
+		req.flash("success","Horror Comic Updated")
+	    res.redirect(`/horrorComics/${req.params.id}`);
 	} catch (err) {
-		res.flash("error", "Update Failure"),
+		req.flash("error", "Update Failure"),
 		res.redirect("/horrorComics");
 	}
 	});
@@ -141,12 +142,12 @@ router.put("/:id", checkHorrorComicOwner, async (req, res) => {
 router.delete("/:id", checkHorrorComicOwner, async (req,res) => {
 	try{
 	const horrorComic = await HorrorComic.findByIdAndDelete(req.params.id).exec();
-	res.flash("success","It is Done.")
+	req.flash("success","It is Done.")
 		console.log("Deleted:", horrorComic);
 		res.redirect("/horrorComics");
 	}catch (err){
 		console.log(err);
-		res.flash("error","Unable to delete comic"),
+		req.flash("error","Unable to delete comic"),
 		res.redirect("back");
 	}
 })
