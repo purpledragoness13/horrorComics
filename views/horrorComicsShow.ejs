@@ -60,11 +60,17 @@
 		   <% } %>
 	   </div>
    </div>
-	<div class= "row show-comment-header mt-3">
-	</div>
-	<a href="/horrorComics/<%= horrorComic._id %>/comments/new">
+	<div class="row show-comment-header mt-3">
+		<a href="/horrorComics/<%= horrorComic._id %>/comments/new" class="col-3">
 		<button class="btn btn-success btn-lg mt-2 my-4">Add Comment</button>
 	</a>
+		<div class="col-2">
+			<button id="upvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<span id="score" class="mx-2">10</span>
+			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+		</div>
+	</div>
+
 	<% Comments.forEach((comment => { %>
 	<div class="row show-comment-container py-2 border">
 		<div class="col-2d my-auto" id="userComment">

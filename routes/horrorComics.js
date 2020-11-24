@@ -99,7 +99,11 @@ router.get("/:id", async (req,res) => {
 })
 
 
-
+router.post("/vote",isLoggedIn,(req,res) => {
+	res.json({
+		message:"Thank you for voting"
+	});
+});
 
 //edit
 router.get("/:id/edit", checkHorrorComicOwner, async (req, res) => {
