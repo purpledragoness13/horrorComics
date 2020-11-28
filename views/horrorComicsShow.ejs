@@ -2,7 +2,7 @@
 
 <div class="container">
    <div class="row mt-4">
-	<div class="col-6 show-image-container">
+	<div class="col-6 show-image-container flex">
 		<img src="<%= horrorComic.image_link %>">
 	</div>	
 	   <div class="col-6 show-details-container">
@@ -65,9 +65,14 @@
 		<button class="btn btn-success btn-lg mt-2 my-4">Add Comment</button>
 	</a>
 		<div class="col-2">
+			<% if (user) { %>
 			<button id="upvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<% } %>
 			<span id="score" class="mx-2">10</span>
+			<% if (user) { %>
 			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<% } %>
+			
 		</div>
 	</div>
 

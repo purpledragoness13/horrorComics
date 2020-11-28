@@ -234,3 +234,21 @@ body {
    text-align: center;
 }
 
+#newCommentTitle{
+		display: flex;
+	max-width: 960px;
+	margin: 0 auto;
+	color: rgb(153,0,0);
+	font-family: 'Source Serif Pro', serif;
+	margin: 10%;
+	text-align:center;
+	border-top: double;
+	border-bottom: double;
+	border-bottom-color: rgb(255,255,255);
+	border-top-color: rgb(255,255,255);
+}
+
+#otherImageContainer{
+	width: 80%;
+	display:flex;
+}

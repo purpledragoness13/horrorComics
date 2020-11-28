@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
 	console.log(req.user);
 	try{
 	const horrorComics = await HorrorComic.find().exec();
-	req.flash("success", "Your horror comic has been created");
 	res.render("horrorComics", {horrorComics});
 	}catch(err) {
 		req.flash("error","There was a problem creating your comic")
@@ -84,6 +83,20 @@ router.get("/genre/:genreName", async (req, res) =>{
     }
 });
 
+//vote
+router.post("/vote",isLoggedIn, async (req,res) => {
+	console.log("request Body:", req.body);
+	
+/*	{
+		comicId:""
+		voteType:
+	}
+*/	
+	const horrorComic = await HorrorComic.findById(req.body.horrorComicId)
+	console.log(horrorComic)
+	res.json(horrorComic);
+});
+
 //show
 router.get("/:id", async (req,res) => {
 	try{
@@ -98,12 +111,6 @@ router.get("/:id", async (req,res) => {
 
 })
 
-
-router.post("/vote",isLoggedIn,(req,res) => {
-	res.json({
-		message:"Thank you for voting"
-	});
-});
 
 //edit
 router.get("/:id/edit", checkHorrorComicOwner, async (req, res) => {

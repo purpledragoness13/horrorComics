@@ -4,23 +4,48 @@
 const upvoteButton=document.getElementById("upvoteButton");
 const downvoteButton=document.getElementById("downvoteButton");
 
-
 //=========================
-//ADD EVENT LISTENER
+//HELPER FUNCTIONS
 //=========================
-upvoteButton.addEventListener("click", async function() {
-	//build fetch options
+const sendVote =async (voteType) => {
+		//build fetch options
 	const options = {
 		method: "POST",
 		headers:{
 			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({vote:"up"})
+		}
 	}
-	//send fetch request
+	if(voteType === "up") {
+		options.body = JSON.stringify({
+			voteType:"up",
+			horrorComicId
+		});
+	}else if(voteType ==="down"){
+		options.body = JSON.stringify({
+			voteType:"down",
+			horrorComicId
+		});
+	}else{
+		throw "voteType must be 'up' or 'down'" 
+	}
+	await fetch("/horrorComics/vote",options) 
+	.then(data => {
+		return data.json()
+	})
+	.then(res =>{
+		console.log(res)
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}
+//=========================
+//ADD EVENT LISTENER
+//=========================
+upvoteButton.addEventListener("click", async function() {
+	sendVote("up");
 })
 
 downvoteButton.addEventListener("click", async function() {
-	//build fetch options
-	//send fetch requests
+    sendVote("down");
 })

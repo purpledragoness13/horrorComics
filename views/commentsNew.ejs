@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs")%>
 
 <div class = container>
-	<h1>New Comment </h1>
+	<h1 id=newCommentTitle>New Comment </h1>
 	<form action="/horrorComics/<%= horrorComicId %>/comments" method ="POST">
 		<div class ="form-group">
 		<label for="commentText" class="commentText"> Comment Text</label>
