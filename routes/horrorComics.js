@@ -93,8 +93,54 @@ router.post("/vote",isLoggedIn, async (req,res) => {
 	}
 */	
 	const horrorComic = await HorrorComic.findById(req.body.horrorComicId)
-	console.log(horrorComic)
-	res.json(horrorComic);
+	const alreadyUpvoted = horror.upvotes.indexOf(req.user.username)// will be -1 if not found
+	const alreadyDownvoted =  horror.downvotes.indexOf(req.user.username)// will be -1 if not found
+	
+	let response = {}
+	//voting logic
+	if(alreadyUpvoted === -1 && alreadyDownvoted === -1) {
+		if(req.body.voteType === "up"){ // upvoting
+			horrorComic.upvotes.push(req.user.username);
+			horrorComic.save()
+			response.message = "liked";
+		} else if (req.body.voteType === "down") {// downvoting
+			horrorComic.downvotes.push(req.user.username);
+			horrorComic.save()
+			response.message = "disliked";
+		} else {
+			response.message = "never before voted error in voting logic horrorComics.js"
+		}		   
+	} else if (alreadyUpvoted >= 0){ //already upvoted
+		if(req.body.voteType === "up"){
+			horrorComic.upvotes.splice(alreadyUpvoted,1);
+		    horrorComic.save()
+			response.message = "unliked";
+		} else if (req.body.voteType === "down") {
+			horrorComic.upvotes.splice(alreadyUpvoted,1);
+			horrorComic.downvotes.push(req.username);
+			horrorComic.save()
+			response.message = "liked";
+		} else {
+			response.message = " previously upvoted error in  voting logic horrorComics.js"
+		}
+	} else if (alreadyDownvoted >= 0) {
+		if(req.body.voteType==="down"){
+			horrorComic.downvotes.splice(alreadyDownvoted, 1);
+			horrorComic.upvotes.push(req.user.username);
+		    horrorComic.save()
+			response.message = "liked";
+		} else if (req.body.voteType === "up") {
+			horrorComic.downvotes.splice(alreadyDownvoted, 1);
+			horrorComic.save()
+			response.message = "un disliked";
+		} else {
+			response.message = " previously downvoted error voting logic horrorComics.js"
+		}
+		
+	} else {
+		response.message = "error in voting logic horrorComics.js"
+	}
+	res.json(response);
 });
 
 //show
