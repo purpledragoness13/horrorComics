@@ -3,7 +3,7 @@
 //=========================
 const upvoteButton=document.getElementById("upvoteButton");
 const downvoteButton=document.getElementById("downvoteButton");
-
+const score = document.getElementById("score");
 //=========================
 //HELPER FUNCTIONS
 //=========================
@@ -28,16 +28,43 @@ const sendVote =async (voteType) => {
 	}else{
 		throw "voteType must be 'up' or 'down'" 
 	}
+	//send fetch request
 	await fetch("/horrorComics/vote",options) 
 	.then(data => {
 		return data.json()
 	})
 	.then(res =>{
-		console.log(res)
+		console.log(res);
+		handleVote(res.score, res.code)
 	})
 	.catch(err => {
 		console.log(err);
 	})
+}
+
+const handleVote = (newScore, code) => {
+	//update the score
+	score.innerText = newScore
+	
+	//update button colors
+	if(code === 0){
+	    upvoteButton.classList.remove("btn-success");
+		upvoteButton.classList.add("btn-outline-success");
+		downvoteButton.classList.remove("btn-danger");
+		downvoteButton.classList.add("btn-outline-danger");
+	} else if (code === 1){
+		upvoteButton.classList.remove("btn-outline-success");
+		upvoteButton.classList.add("btn-success");
+		downvoteButton.classList.remove("btn-danger");
+		downvoteButton.classList.add("btn-outline-danger");
+	} else if (code === -1){
+		upvoteButton.classList.remove("btn-success");
+		upvoteButton.classList.add("btn-outline-success");
+	    downvoteButton.classList.remove("btn-outline-danger");
+		downvoteButton.classList.add("btn-danger");
+	} else{
+		console.log("error in handleVote in horrorComicsShow.js")
+	}
 }
 //=========================
 //ADD EVENT LISTENER

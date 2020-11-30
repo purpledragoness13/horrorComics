@@ -102,44 +102,47 @@ router.post("/vote",isLoggedIn, async (req,res) => {
 		if(req.body.voteType === "up"){ // upvoting
 			horrorComic.upvotes.push(req.user.username);
 			horrorComic.save()
-			response.message = "liked";
+			response = {message:"liked", code:1}
 		} else if (req.body.voteType === "down") {// downvoting
 			horrorComic.downvotes.push(req.user.username);
 			horrorComic.save()
-			response.message = "disliked";
+			response= {message:"disliked", code: -1}
 		} else {
-			response.message = "never before voted error in voting logic horrorComics.js"
+			response = {message: "never before voted error in voting logic horrorComics.js", code: "err"}
 		}		   
 	} else if (alreadyUpvoted >= 0){ //already upvoted
 		if(req.body.voteType === "up"){
 			horrorComic.upvotes.splice(alreadyUpvoted,1);
 		    horrorComic.save()
-			response.message = "unliked";
+			response= {message:"unliked", code:0}
 		} else if (req.body.voteType === "down") {
-			horrorComic.upvotes.splice(alreadyUpvoted,1);
+			horrorComic.upvotes.splice(alreadyUpvoted, -1);
 			horrorComic.downvotes.push(req.username);
 			horrorComic.save()
-			response.message = "liked";
+			response= {message : "disliked", code: -1};
 		} else {
-			response.message = " previously upvoted error in  voting logic horrorComics.js"
+			response ={message:"previously upvoted error in  voting logic horrorComics.js", code: "err"}
 		}
 	} else if (alreadyDownvoted >= 0) {
 		if(req.body.voteType==="down"){
 			horrorComic.downvotes.splice(alreadyDownvoted, 1);
 			horrorComic.upvotes.push(req.user.username);
 		    horrorComic.save()
-			response.message = "liked";
+			response= {message: "un disliked", code:0}
 		} else if (req.body.voteType === "up") {
 			horrorComic.downvotes.splice(alreadyDownvoted, 1);
 			horrorComic.save()
-			response.message = "un disliked";
+			response={message: "liked", code:1}
 		} else {
-			response.message = " previously downvoted error voting logic horrorComics.js"
+			response ={message: "previously downvoted error voting logic horrorComics.js", code:"err"}
 		}
 		
 	} else {
-		response.message = "error in voting logic horrorComics.js"
+		response={message:"error in voting logic horrorComics.js", code:"err"}
 	}
+	
+	response.score = horrorComic.upvotes.length - horrorComic.downvotes.length;
+	
 	res.json(response);
 });
 

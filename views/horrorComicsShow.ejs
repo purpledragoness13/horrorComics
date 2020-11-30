@@ -6,10 +6,10 @@
 		<img src="<%= horrorComic.image_link %>">
 	</div>	
 	   <div class="col-6 show-details-container">
-		   <h1><%= horrorComic.title %></h1>
-		   <h2>Author</h2>
-		   <p><%= horrorComic.author %></p>
-		   <table class = "table">
+		   <h1 class="topofcomicinfotable"><%= horrorComic.title %></h1>
+		   <h2 class="topofcomicinfotable">Author</h2>
+		   <p class="topofcomicinfotable"><%= horrorComic.author %></p>
+		   <table class = "table" id="comicInfoTable">
 			   <tbody>
 				     <tr>
 				 <th scope ="row">Subgenre</th>
@@ -65,11 +65,15 @@
 		<button class="btn btn-success btn-lg mt-2 my-4">Add Comment</button>
 	</a>
 		<div class="col-2">
-			<% if (user) { %>
+			<% if (user && horrorComic.upvotes.indexOf(user.username) >= 0) { %>
+			<button id="upvoteButton" class="btn btn-success btn-lg mt-3"></button>
+			<% } else if (user) { %>
 			<button id="upvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
 			<% } %>
-			<span id="score" class="mx-2">10</span>
-			<% if (user) { %>
+			<span id="score" class="mx-2"><%= horrorComic.upvotes.length - horrorComic.downvotes.length%></span>
+			<% if (user && horrorComic.downvotes.indexOf(user.username) >= 0) { %>
+			<button id="downvoteButton" class="btn btn-success btn-lg mt-3"></button>
+			<% } else if (user) { %>
 			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
 			<% } %>
 			
