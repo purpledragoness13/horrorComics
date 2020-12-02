@@ -76,7 +76,13 @@
 			<% } else if (user) { %>
 			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
 			<% } %>
-			
+			 
+			<% if (user){ %>
+			<button id ="hasReadButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<% } %>
+			<% if (user){ %>
+			<button id ="wantsToRead" class="btn btn-outline-success btn-lg mt-3"></button>
+			<% } %>
 		</div>
 	</div>
 

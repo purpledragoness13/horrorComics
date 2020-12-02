@@ -1,12 +1,42 @@
 //=========================
 //SELECT ELEMENTS
 //=========================
+const HorrorComic = require('../models/HorrorComic.js');
+const User = require('../models/User.js');
 const upvoteButton=document.getElementById("upvoteButton");
 const downvoteButton=document.getElementById("downvoteButton");
-const score = document.getElementById("score");
+const score = document.getElementById("score"); 
+const hasReadButton= document.getElementById("hasReadButton");
+const wantsToRead = document.getElementById("wantsToRead");
 //=========================
 //HELPER FUNCTIONS
 //=========================
+const addToWantList = async (req, res) => {
+	const options = {
+		method: "POST",
+		headers:{
+			'Content-Type': 'application/json'
+		}
+                     }
+	     options.body = JSON.stringify({
+			 horrorComicId
+		 })
+	user.wantsToRead = options.body;
+	}
+
+const addToReadList = async (req, res) => {
+	const options = {
+		method: "POST",
+		headers:{
+			'Content-Type': 'application/json'
+		}
+                     }
+	     options.body = JSON.stringify({
+			 horrorComicId
+		 })
+	user.hasRead = options.body;
+}
+
 const sendVote =async (voteType) => {
 		//build fetch options
 	const options = {
@@ -75,4 +105,12 @@ upvoteButton.addEventListener("click", async function() {
 
 downvoteButton.addEventListener("click", async function() {
     sendVote("down");
+})
+
+wantsToRead.addEventListener("click", async function() {
+	addToWantList("user");
+})
+
+hasReadButton.addEventListener("click", async function() {
+	addToReadList("user")
 })

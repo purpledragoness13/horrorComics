@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const isLoggedIn= require('../utils/isLoggedIn.js');
+const isLoggedIn= require('../utils/isLoggedIn.js')
 const HorrorComic = require('../models/HorrorComic');
 const Comment = require('../models/Comment');
 const checkHorrorComicOwner = require('../utils/checkHorrorComicOwner');

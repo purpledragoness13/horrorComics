@@ -21,7 +21,7 @@ const horrorComicSchema = new mongoose.Schema({
 	username: String
 	},
 	upvotes: [String],
-	downvotes: [String]
+	downvotes: [String],
 });
 
 horrorComicSchema.index({
