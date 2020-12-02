@@ -66,29 +66,29 @@
 	</a>
 		<div class="col-2">
 			<% if (user && horrorComic.upvotes.indexOf(user.username) >= 0) { %>
-			<button id="upvoteButton" class="btn btn-success btn-lg mt-3"></button>
+			<button id="upvoteButton" class="btn btn-success btn-lg mt-3">⟰</button>
 			<% } else if (user) { %>
-			<button id="upvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<button id="upvoteButton" class="btn btn-outline-success btn-lg mt-3">⟰</button>
 			<% } %>
 			<span id="score" class="mx-2"><%= horrorComic.upvotes.length - horrorComic.downvotes.length%></span>
 			<% if (user && horrorComic.downvotes.indexOf(user.username) >= 0) { %>
-			<button id="downvoteButton" class="btn btn-success btn-lg mt-3"></button>
+			<button id="downvoteButton" class="btn btn-success btn-lg mt-3">⟱</button>
 			<% } else if (user) { %>
-			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<button id="downvoteButton" class="btn btn-outline-success btn-lg mt-3">⟱</button>
 			<% } %>
 			 
 			<% if (user){ %>
-			<button id ="hasReadButton" class="btn btn-outline-success btn-lg mt-3"></button>
+			<button id ="hasReadButton" title="Add to the List of Books You have Read" class="btn btn-outline-success btn-lg mt-3">📘</button>
 			<% } %>
 			<% if (user){ %>
-			<button id ="wantsToRead" class="btn btn-outline-success btn-lg mt-3"></button>
+			<button id ="wantsToRead" title="Add to Books to Read" class="btn btn-outline-success btn-lg mt-3">📙</button>
 			<% } %>
 		</div>
 	</div>
 
 	<% Comments.forEach((comment => { %>
 	<div class="row show-comment-container py-2 border">
-		<div class="col-2d my-auto" id="userComment">
+		<div class="col-2d my-auto userComment">
 			<%= comment.user %>
 		</div>
 		<div class="col-2 border-right my-auto d-flex flex-wrap justify-content-center" id="successbtn" >
