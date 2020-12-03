@@ -25,13 +25,13 @@ router.post("/", isLoggedIn, async (req, res) => {
 		author:req.body.author,
 		issue:req.body.issue,
 		series:req.body.series,
-		date:req.body.date,
+		Date:req.body.Date,
 		illustrator:req.body.illustrator,
 		publisher:req.body.publisher,
 	    description: req.body.description,
 	    image_link: req.body.image_link,
-        rated: req.body.rated,
-        subgenre: req.body.subgenre,
+        rating: req.body.rating,
+        subgenre: subgenre,
         completionStatus: req.body.completionStatus,
 		owner: {
 			id: req.user.id,
@@ -82,6 +82,20 @@ router.get("/genre/:genreName", async (req, res) =>{
 		res.send()
     }
 });
+
+//add to already read list
+router.post("/addToReadList", isLoggedIn, async (req, res) => {
+	// get users read list
+	const usersreadlist = req.user.hasRead;
+	
+})
+
+//add to already read list
+router.post("/addToWantList", isLoggedIn, async (req, res) => {
+	// get users I want to read list
+	const userswantlist = req.user.wantsToRead;
+})
+
 
 //vote
 router.post("/vote",isLoggedIn, async (req,res) => {
@@ -175,12 +189,12 @@ router.put("/:id", checkHorrorComicOwner, async (req, res) => {
 		author:req.body.author,
 		issue:req.body.issue,
 		series:req.body.series,
-		date:req.body.date,
+		Date:req.body.Date,
 		illustrator:req.body.illustrator,
 		publisher:req.body.publisher,
 	    description: req.body.description,
 	    image: req.body.image,
-        rated: req.body.rated,
+        rating: req.body.rating,
         subgenre,
         completionStatus: req.body.completionStatus,
 		owner: {

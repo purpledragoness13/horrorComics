@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const horrorComicSchema = new mongoose.Schema({
 	title: String,
-	date: Date,
+	Date: Date,
 	series: String,
 	issue: Number,
 	image_link: String,

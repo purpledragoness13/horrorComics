@@ -7,7 +7,7 @@ const horrorComicSeeds = [
 		title: "Beautiful Darkness",
 		summary:"A beutiful fantasy horror fairytale that investigates the troupe of 'tiny' people' made popular by 'The Secret World of Arriety','Tom Thumb', and 'Thumbelina', through a horror lens. The story revolves around the kind Aurora and the community she lives in trying to survive in a big world.",
 		subgenre:"Fantasy Horror",
-		date:" 06/03/2009",
+		Date:" 06/03/2009",
 		author:"Fabien Vehlmann Kerascoët",
 		series:"Not part of a series",
 		issue:"000",
